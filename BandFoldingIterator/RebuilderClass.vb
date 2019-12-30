@@ -7,10 +7,11 @@ Public Class RebuilderClass
     Dim oPartDoc As PartDocument
     Dim oSk3D As Sketch3D
     Dim delta, gain, sp As Double
-    Dim oTheta, oGap, oTecho, p As Parameter
-    Dim resolution As Integer = 100
+    Dim oTheta, oGap, oTecho, p, k As Parameter
+    Dim resolution As Integer = 10
     Dim dimension As DimensionConstraint3D
     Dim kapput As Boolean
+    Dim variables() As String = {"angulo", "techo", "gap1", "gap2", "foldez", "doblez"}
 
 
     Public Structure DesignParam
@@ -35,6 +36,7 @@ Public Class RebuilderClass
         Cr = (DP.Dmax - DP.Dmin) / 4
         DP.p = 17
         DP.q = 37
+        k = Nothing
     End Sub
 
     Function openFile(fileName As String) As PartDocument
@@ -49,8 +51,8 @@ Public Class RebuilderClass
 
             oPartDoc = oApp.ActiveDocument
         Catch ex3 As Exception
-            MsgBox(ex3.ToString())
-            MsgBox("Unable to find Document")
+            Debug.Print(ex3.ToString())
+            Debug.Print("Unable to find Document")
         End Try
 
         ' Conversions.SetUnitsToMetric(oPartDoc)
@@ -73,11 +75,12 @@ Public Class RebuilderClass
         sp = theta
         Try
             changeParameter(openMainSketch(oPartDoc))
-            checkBuilder("angulo")
-
+            checkBuilder()
+            Debug.Print("done!!")
         Catch ex As Exception
             Call UndoCommand()
             makeallDriven()
+            Debug.Print(ex.ToString())
         End Try
 
         Return oTheta._Value
@@ -93,16 +96,33 @@ Public Class RebuilderClass
             oTheta = getParameter("angulo")
 
             oSk3D.Edit()
-            p = iterate("angulo", sp)
+            calculateGain(sp, "angulo")
+
+            While (Math.Abs(delta * resolution)) > (sp / resolution)
+                p = iterate("angulo", sp)
+                While kapput
+                    checkBuilder()
+                    If k.Name = Nothing Then
+                        checkGaps(p.Name)
+                    Else
+                        checkGaps(k.Name)
+                    End If
+
+                End While
+
+
+
+            End While
+
             oSk3D.Solve()
             oSk3D.ExitEdit()
 
         Catch ex4 As Exception
             Call UndoCommand()
             makeallDriven()
-            resolution = 1000
-            MsgBox(ex4.ToString())
-            MsgBox("Fail Iteration  last value: " & oTheta.Value.ToString)
+            resolution = resolution + 1
+            Debug.Print(ex4.ToString())
+            Debug.Print("Fail Iteration  last value: " & oTheta.Value.ToString)
             Exit Sub
         End Try
 
@@ -130,8 +150,8 @@ Public Class RebuilderClass
                 Try
                     p = oPartDoc.ComponentDefinition.Parameters.UserParameters.Item(name)
                 Catch ex2 As Exception
-                    MsgBox(ex2.ToString())
-                    MsgBox("Parameter not found: " & name)
+                    Debug.Print(ex2.ToString())
+                    Debug.Print("Parameter not found: " & name)
                 End Try
 
             End Try
@@ -160,36 +180,31 @@ Public Class RebuilderClass
     Public Sub checkGaps(name As String)
 
         Try
-            If Not name = "techo" Then
-                checkAngulos("techo", 2.8, 3.1, Math.Max(2.8, getParameter("techo")._Value * 0.9))
-            End If
-
-            If Not name = "gap1" Then
-                checkDimension("gap1", 3, 12, 10 * Math.Max(0.3, getParameter("gap1")._Value / 2))
-            End If
-            If Not name = "gap2" Then
-                checkDimension("gap2", 2, 12, 10 * Math.Max(0.2, getParameter("gap2")._Value / 2))
-            End If
-
-            If Not name = "foldez" Then
-                checkDimension("foldez", getParameter("doblez")._Value * 10, 3, 10 * Math.Max(getParameter("doblez")._Value, getParameter("foldez")._Value / 2))
-            End If
-
-            If Not name = "doblez" Then
-                checkDimension("doblez", 0.1, 1.2, 10 * Math.Max(0.01, getParameter("doblez")._Value / 2))
-            End If
+            Select Case name
+                Case "techo"
+                    checkAngulos(name, 2.7, 3.1, Math.Max(2.8, getParameter(name)._Value * 0.9))
+                Case "gap1"
+                    checkDimension(name, 3, 10, 10 * Math.Max(0.3, getParameter(name)._Value / 2))
+                Case "gap2"
+                    checkDimension(name, 2, 9, 10 * Math.Max(0.2, getParameter(name)._Value / 2))
+                Case "foldez"
+                    checkDimension(name, getParameter("doblez")._Value * 10, 2, 10 * Math.Max(getParameter("doblez")._Value, getParameter(name)._Value / 2))
+                Case "doblez"
+                    checkDimension(name, 0.01, 0.9, 10 * Math.Max(0.001, getParameter(name)._Value / 2))
+            End Select
 
 
 
         Catch ex As Exception
             UndoCommand()
             makeallDriven()
-            resolution = 1000
-            MsgBox(ex.ToString())
-            MsgBox("Fail Iteration  checkGaps: " & p.Value.ToString)
+            resolution = resolution + 1
+            Debug.Print(ex.ToString())
+            Debug.Print("Fail Iteration  checkGaps: " & p.Value.ToString)
         End Try
 
     End Sub
+
     Public Function iterate(name As String, setpoint As Double) As Parameter
         p = getParameter(name)
 
@@ -197,43 +212,75 @@ Public Class RebuilderClass
             calculateGain(setpoint, name)
             makeallDriven()
             getDimension(name).Driven = False
-            While (Math.Abs(delta * resolution)) > (setpoint * 10 / resolution)
+            While ((Math.Abs(delta * resolution)) > (setpoint / resolution) And (Not kapput))
                 p = getParameter(name)
                 p.Value = p.Value * calculateGain(setpoint, name)
-                checkBuilder(p.Name)
+                checkOtherVariables(p.Name)
+                checkBuilder()
 
             End While
+            Debug.Print("adjusting " & p.Name & " = " & p.Value.ToString)
+            Debug.Print("Resolution:  " & resolution.ToString)
+            If kapput Then
+                If resolution < 10000 Then
+                    resolution = resolution + 1
+                End If
+                UndoCommand()
+                getDimension("techo").Driven = False
+                Return k
+            Else
+                If resolution > 10 Then
+                    resolution = resolution - 1
+                End If
+
+            End If
             getDimension("techo").Driven = False
+
         Catch ex As Exception
             UndoCommand()
             getDimension(name).Driven = True
-            resolution = 1000
-            MsgBox(ex.ToString())
-            MsgBox("Fail Iteration  last value: " & p.Value.ToString)
+            resolution = resolution + 1
+            Debug.Print(ex.ToString())
+            Debug.Print("Fail Iteration  last value: " & p.Value.ToString)
             Return p
 
         End Try
-        'getDimension(name).Driven = True
-        resolution = 100
 
         Return p
     End Function
+    Public Sub checkOtherVariables(name As String)
+        Dim variable As String
+        If name = "angulo" Then
 
-    Public Sub checkBuilder(name As String)
+            For Each variable In variables
+                If Not name = variable Then
+                    checkGaps(variable)
+                End If
+
+
+            Next
+        Else
+            checkGaps(name)
+        End If
+
+
+
+    End Sub
+    Public Sub checkBuilder()
         Try
             oSk3D.Solve()
             oSk3D.ExitEdit()
             oPartDoc.Update()
             oSk3D.Edit()
-            checkGaps(name)
 
         Catch ex As Exception
             UndoCommand()
-            makeallDriven()
-            getDimension(p.Name).Driven = False
-            resolution = 1000
-            MsgBox(ex.ToString())
-            MsgBox("Fail checkbuilder last value: " & p.Value.ToString)
+            'makeallDriven()
+            kapput = True
+            k = p
+            resolution = resolution + 1
+            Debug.Print(ex.ToString())
+            Debug.Print("Fail adjusting " & p.Name & " ...last value:" & p.Value.ToString)
             Exit Sub
         End Try
 
@@ -242,9 +289,18 @@ Public Class RebuilderClass
         p = getParameter(name)
 
         If (p._Value < a / 10 Or p._Value > b / 10) Then
-            getDimension(name).Driven = False
-            p = iterate(name, setpoint / 10)
-            getDimension(name).Driven = True
+            k = p
+            If kapput Then
+                getDimension(name).Driven = False
+                kapput = False
+                p = iterate(name, setpoint / 10)
+                getDimension(name).Driven = True
+            Else
+                k = p
+                kapput = True
+            End If
+        Else
+            kapput = False
         End If
 
         Return p
@@ -253,9 +309,18 @@ Public Class RebuilderClass
         p = getParameter(name)
 
         If (p._Value < a Or p._Value > b) Then
-            getDimension(name).Driven = False
-            p = iterate(name, setpoint)
-            getDimension(name).Driven = True
+            k = p
+            If kapput Then
+                getDimension(name).Driven = False
+                kapput = False
+                p = iterate(name, setpoint / 10)
+                getDimension(name).Driven = True
+            Else
+
+                kapput = True
+            End If
+        Else
+            kapput = False
         End If
 
         Return p

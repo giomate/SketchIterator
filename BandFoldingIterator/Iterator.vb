@@ -53,7 +53,7 @@ Public Class Iterator
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If started Then
-            Dim Ajustador As New RebuilderClass(oApp)
+            Dim Ajustador As New SketchAdjust(oApp)
             Dim theta As Double = 1.76 - Math.PI / 2
             Dim fileName As String = "Sketch3DIterator1.ipt"
             Ajustador.adjust(fileName, theta)

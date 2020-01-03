@@ -1,102 +1,245 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph DataVirtualized="True" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="(@1 @2 @3 Member=(Name=checkBuilder @9))" Category="CodeSchema_Method" Bounds="413.583344523112,231.646203493881,103.116666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="checkBuilder" Icon="CodeSchema_Method" Label="checkBuilder" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=261 StartCharacterOffset=0 EndLineNumber=261 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 @10 Member=(Name=checkBuilder @14))" Category="CodeSchema_Method" Bounds="231.525,223.84,103.116666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="checkBuilder" Icon="CodeSchema_Method" Label="checkBuilder" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=261 StartCharacterOffset=0 EndLineNumber=261 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="(@1 @2 @3 Member=(Name=getDimension @9))" Category="CodeSchema_Method" Bounds="137.164988301595,343.566403493881,109.953333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="getDimension" Icon="CodeSchema_Method" Label="getDimension" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=308 StartCharacterOffset=0 EndLineNumber=308 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 @10 Member=(Name=getDimension @14))" Category="CodeSchema_Method" Bounds="160.106666666667,503.64,109.953333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="getDimension" Icon="CodeSchema_Method" Label="getDimension" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=308 StartCharacterOffset=0 EndLineNumber=308 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="(@1 @2 @3 Member=objetiveZero)" Category="CodeSchema_Method" Bounds="280.848329264323,231.646203493881,102.586666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="objetiveZero" Icon="CodeSchema_Method" Label="objetiveZero" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=374 StartCharacterOffset=0 EndLineNumber=374 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 @10 Member=objetiveZero)" Category="CodeSchema_Method" Bounds="364.79,223.84,102.586666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="objetiveZero" Icon="CodeSchema_Method" Label="objetiveZero" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=374 StartCharacterOffset=0 EndLineNumber=374 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="(@1 @2 Type=SketchAdjust Member=(Name=adjust OverloadingParameters=[@8,@13]))" Category="CodeSchema_Method" Bounds="328.126677856445,63.7659034938812,68.03,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="adjust" Icon="CodeSchema_Method" Label="adjust" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchAdjust.vb StartLineNumber=84 StartCharacterOffset=0 EndLineNumber=84 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 @12 Member=(Name=CalculateGain @14))" Category="CodeSchema_Method" Bounds="836.998333333333,447.68,108.17,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="CalculateGain" Icon="CodeSchema_Method" Label="CalculateGain" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=443 StartCharacterOffset=0 EndLineNumber=443 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@10" Category="CodeSchema_Method" Bounds="383.83999593099,399.526503493881,92.6033333333334,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="checkGaps" Icon="CodeSchema_Method" Label="checkGaps" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=214 StartCharacterOffset=0 EndLineNumber=214 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 @12 Member=(Name=GetIndexVariable @14))" Category="CodeSchema_Method" Bounds="1034.32666666667,671.520000000001,125.513333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="GetIndexVariable" Icon="CodeSchema_Method" Label="GetIndexVariable" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=461 StartCharacterOffset=0 EndLineNumber=461 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@11" Category="CodeSchema_Method" Bounds="341.308314005534,343.566403493881,143.666666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="checkOtherVariables" Icon="CodeSchema_Method" Label="checkOtherVariables" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=290 StartCharacterOffset=0 EndLineNumber=290 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 @12 Member=HealthSketch)" Category="CodeSchema_Method" Bounds="899.243333333334,727.480000000001,105.68,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="HealthSketch" Icon="CodeSchema_Method" Label="HealthSketch" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=356 StartCharacterOffset=0 EndLineNumber=356 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@12" Category="CodeSchema_Method" Bounds="192.523336893717,511.446703493881,107.236666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="getParameter" Icon="CodeSchema_Method" Label="getParameter" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=155 StartCharacterOffset=0 EndLineNumber=155 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 @5 Member=(Name=.ctor OverloadingParameters=[(@4 Namespace=Inventor Type=Document)]))" Category="CodeSchema_Method" Bounds="966.348333333333,167.88,113.47,25.96" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="BandRefolding" Icon="CodeSchema_Method" Label="BandRefolding" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/BandRefolding.vb StartLineNumber=16 StartCharacterOffset=0 EndLineNumber=16 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@14" Category="CodeSchema_Method" Bounds="298.126677856445,119.726003493881,68.03,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="adjust" Icon="CodeSchema_Method" Label="adjust" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=79 StartCharacterOffset=0 EndLineNumber=79 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 @5 Member=(Name=ChangeMainObjetive OverloadingParameters=[@8]))" Category="CodeSchema_Method" Bounds="812.423333333333,223.84,147.32,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="ChangeMainObjetive" Icon="CodeSchema_Method" Label="ChangeMainObjetive" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/BandRefolding.vb StartLineNumber=127 StartCharacterOffset=0 EndLineNumber=127 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@15" Category="CodeSchema_Method" Bounds="180.205003560384,231.646203493881,69.8733333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="iterate" Icon="CodeSchema_Method" Label="iterate" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=234 StartCharacterOffset=0 EndLineNumber=234 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 @5 Member=FindMaindSketch)" Category="CodeSchema_Method" Bounds="990.441666666667,223.84,127.283333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="FindMaindSketch" Icon="CodeSchema_Method" Label="FindMaindSketch" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/BandRefolding.vb StartLineNumber=95 StartCharacterOffset=0 EndLineNumber=95 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@16" Category="CodeSchema_Method" Bounds="278.230011189779,7.80580349388119,107.823333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPrivate="True" CommonLabel="Button1_Click" Icon="CodeSchema_Method" Label="Button1_Click" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/Iterator.vb StartLineNumber=58 StartCharacterOffset=0 EndLineNumber=58 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 Type=InventorFile Member=(Name=.ctor OverloadingParameters=[(@4 Namespace=Inventor Type=Application)]))" Category="CodeSchema_Method" Bounds="707.075,167.88,98.0166666666667,25.96" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="InventorFile" Icon="CodeSchema_Method" Label="InventorFile" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/InventorFile.vb StartLineNumber=23 StartCharacterOffset=0 EndLineNumber=23 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@17" Category="CodeSchema_Method" Bounds="0,279.8,106.283333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="calculateGain" Icon="CodeSchema_Method" Label="calculateGain" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=179 StartCharacterOffset=0 EndLineNumber=179 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 Type=InventorFile Member=(Name=CreateFileCopy OverloadingParameters=[@13,@13]))" Category="CodeSchema_Method" Bounds="561.283333333333,167.88,115.6,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="CreateFileCopy" Icon="CodeSchema_Method" Label="CreateFileCopy" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/InventorFile.vb StartLineNumber=56 StartCharacterOffset=0 EndLineNumber=56 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@18" Category="CodeSchema_Method" Bounds="461.37499593099,455.486603493881,109.533333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="checkAngulos" Icon="CodeSchema_Method" Label="checkAngulos" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=325 StartCharacterOffset=0 EndLineNumber=325 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 Type=Optimizador Member=HighPriority)" Category="CodeSchema_Method" Bounds="561.55,335.76,99.0666666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="HighPriority" Icon="CodeSchema_Method" Label="HighPriority" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/Optimizador.vb StartLineNumber=20 StartCharacterOffset=0 EndLineNumber=20 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@19" Category="CodeSchema_Method" Bounds="276.811677856445,455.486603493881,122.66,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="checkDimension" Icon="CodeSchema_Method" Label="checkDimension" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=328 StartCharacterOffset=0 EndLineNumber=328 EndCharacterOffset=0)">
+    <Node Id="(@1 @2 Type=SketchAdjust Member=(Name=adjust OverloadingParameters=[@13,@8]))" Category="CodeSchema_Method" Bounds="397.068333333333,111.92,68.03,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="adjust" Icon="CodeSchema_Method" Label="adjust" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchAdjust.vb StartLineNumber=84 StartCharacterOffset=0 EndLineNumber=84 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@20" Category="CodeSchema_Method" Bounds="381.583344523112,287.606303493881,103.116666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="checkBuilder" Icon="CodeSchema_Method" Label="checkBuilder" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=312 StartCharacterOffset=0 EndLineNumber=312 EndCharacterOffset=0)">
+    <Node Id="@11" Category="CodeSchema_Method" Bounds="351.883333333333,167.88,128.4,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="changeParameter" Icon="CodeSchema_Method" Label="changeParameter" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=105 StartCharacterOffset=0 EndLineNumber=105 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@21" Category="CodeSchema_Method" Bounds="136.686662597656,287.606303493881,110.91,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="makeallDriven" Icon="CodeSchema_Method" Label="makeallDriven" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=120 StartCharacterOffset=0 EndLineNumber=120 EndCharacterOffset=0)">
+    <Node Id="@15" Category="CodeSchema_Method" Bounds="691.155,335.76,121.856666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="adjustParameter" Icon="CodeSchema_Method" Label="adjustParameter" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=56 StartCharacterOffset=0 EndLineNumber=56 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="@5" Category="CodeSchema_Method" Bounds="267.941677856445,175.686103493881,128.4,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="changeParameter" Icon="CodeSchema_Method" Label="changeParameter" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=105 StartCharacterOffset=0 EndLineNumber=105 EndCharacterOffset=0)">
+    <Node Id="@16" Category="CodeSchema_Method" Bounds="374.781666666667,279.8,92.6033333333335,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="checkGaps" Icon="CodeSchema_Method" Label="checkGaps" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=214 StartCharacterOffset=0 EndLineNumber=214 EndCharacterOffset=0)">
       <Category Ref="CallStackEntry" />
       <Category Ref="CodeSchema_SourceLocation" />
     </Node>
-    <Node Id="ExternalCodeRootNode" Category="ExternalCallStackEntry" Bounds="285.648344523112,-48.1542965061188,92.9866666666667,25.96" Label="External Code">
+    <Node Id="@17" Category="CodeSchema_Method" Bounds="25.2499999999998,223.84,143.666666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="checkOtherVariables" Icon="CodeSchema_Method" Label="checkOtherVariables" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=290 StartCharacterOffset=0 EndLineNumber=290 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@18" Category="CodeSchema_Method" Bounds="594.306666666667,503.640000000001,145.553333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="CheckOtherVariables" Icon="CodeSchema_Method" Label="CheckOtherVariables" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=405 StartCharacterOffset=0 EndLineNumber=405 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@19" Category="CodeSchema_Method" Bounds="625.373333333333,559.600000000001,101.42,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="CheckRange" Icon="CodeSchema_Method" Label="CheckRange" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=376 StartCharacterOffset=0 EndLineNumber=376 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@20" Category="CodeSchema_Method" Bounds="1035.52333333333,727.480000000001,111.12,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="GetDimension" Icon="CodeSchema_Method" Label="GetDimension" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=481 StartCharacterOffset=0 EndLineNumber=481 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@21" Category="CodeSchema_Method" Bounds="326.465,503.640000000001,107.236666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="getParameter" Icon="CodeSchema_Method" Label="getParameter" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=155 StartCharacterOffset=0 EndLineNumber=155 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@22" Category="CodeSchema_Method" Bounds="668.881666666667,671.520000000001,108.403333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="GetParameter" Icon="CodeSchema_Method" Label="GetParameter" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=407 StartCharacterOffset=0 EndLineNumber=407 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@23" Category="CodeSchema_Method" Bounds="885.713333333333,671.520000000001,86.74,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="IsEditable" Icon="CodeSchema_Method" Label="IsEditable" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=257 StartCharacterOffset=0 EndLineNumber=257 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@24" Category="CodeSchema_Method" Bounds="806.74,615.560000000001,88.6866666666666,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="IsSolvable" Icon="CodeSchema_Method" Label="IsSolvable" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=287 StartCharacterOffset=0 EndLineNumber=287 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@25" Category="CodeSchema_Method" Bounds="736.003333333333,447.68,70.16,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="Iterate" Icon="CodeSchema_Method" Label="Iterate" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=166 StartCharacterOffset=0 EndLineNumber=166 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@26" Category="CodeSchema_Method" Bounds="789.343333333333,559.6,123.48,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="IterateOutRange" Icon="CodeSchema_Method" Label="IterateOutRange" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=209 StartCharacterOffset=0 EndLineNumber=209 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@27" Category="CodeSchema_Method" Bounds="698.488333333333,391.72,107.19,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="MainIteration" Icon="CodeSchema_Method" Label="MainIteration" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=116 StartCharacterOffset=0 EndLineNumber=116 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@28" Category="CodeSchema_Method" Bounds="755.64,727.480000000001,112.886666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="RecoverSketch" Icon="CodeSchema_Method" Label="RecoverSketch" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=322 StartCharacterOffset=0 EndLineNumber=322 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@29" Category="CodeSchema_Method" Bounds="933.261666666667,615.560000000001,85.6433333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="StartOver" Icon="CodeSchema_Method" Label="StartOver" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=242 StartCharacterOffset=0 EndLineNumber=242 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@30" Category="CodeSchema_Method" Bounds="670.186666666667,223.84,111.793333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="StartSequence" Icon="CodeSchema_Method" Label="StartSequence" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/BandRefolding.vb StartLineNumber=184 StartCharacterOffset=0 EndLineNumber=184 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@31" Category="CodeSchema_Method" Bounds="628.601666666667,615.560000000001,98.9633333333334,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="CheckLimits" Icon="CodeSchema_Method" Label="CheckLimits" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=389 StartCharacterOffset=0 EndLineNumber=389 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@32" Category="CodeSchema_Method" Bounds="496.068333333333,111.92,68.03,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="adjust" Icon="CodeSchema_Method" Label="adjust" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=79 StartCharacterOffset=0 EndLineNumber=79 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@33" Category="CodeSchema_Method" Bounds="108.146666666667,391.72,69.8733333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="iterate" Icon="CodeSchema_Method" Label="iterate" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=234 StartCharacterOffset=0 EndLineNumber=234 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@34" Category="CodeSchema_Method" Bounds="476.171666666667,55.96,107.823333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPrivate="True" CommonLabel="Button1_Click" Icon="CodeSchema_Method" Label="Button1_Click" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/Iterator.vb StartLineNumber=58 StartCharacterOffset=0 EndLineNumber=58 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@35" Category="CodeSchema_Method" Bounds="614.29,55.96,129.586666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPrivate="True" CommonLabel="Iterator_Activated" Icon="CodeSchema_Method" Label="Iterator_Activated" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/Iterator.vb StartLineNumber=71 StartCharacterOffset=0 EndLineNumber=71 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@36" Category="CodeSchema_Method" Bounds="476.941666666667,447.68,106.283333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="calculateGain" Icon="CodeSchema_Method" Label="calculateGain" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=179 StartCharacterOffset=0 EndLineNumber=179 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@37" Category="CodeSchema_Method" Bounds="325.316666666667,335.76,109.533333333333,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="checkAngulos" Icon="CodeSchema_Method" Label="checkAngulos" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=325 StartCharacterOffset=0 EndLineNumber=325 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@38" Category="CodeSchema_Method" Bounds="171.753333333333,335.76,122.66,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="checkDimension" Icon="CodeSchema_Method" Label="checkDimension" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=328 StartCharacterOffset=0 EndLineNumber=328 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@39" Category="CodeSchema_Method" Bounds="25.5250000000001,447.68,103.116666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="checkBuilder" Icon="CodeSchema_Method" Label="checkBuilder" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=312 StartCharacterOffset=0 EndLineNumber=312 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@40" Category="CodeSchema_Method" Bounds="159.628333333333,447.68,110.91,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="makeallDriven" Icon="CodeSchema_Method" Label="makeallDriven" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/RebuilderClass.vb StartLineNumber=120 StartCharacterOffset=0 EndLineNumber=120 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@41" Category="CodeSchema_Method" Bounds="697.705,279.8,56.7566666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="Run" Icon="CodeSchema_Method" Label="Run" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/SketchOptimizer.vb StartLineNumber=33 StartCharacterOffset=0 EndLineNumber=33 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@42" Category="CodeSchema_Method" Bounds="706.34,111.92,99.4866666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="StartIterator" Icon="CodeSchema_Method" Label="StartIterator" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/Iterator.vb StartLineNumber=91 StartCharacterOffset=0 EndLineNumber=91 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="@9" Category="CodeSchema_Method" Bounds="836.07,167.88,100.026666666667,25.96" CodeSchemaProperty_IsHideBySignature="True" CodeSchemaProperty_IsPublic="True" CommonLabel="StartFolding" Icon="CodeSchema_Method" Label="StartFolding" SourceLocation="(Assembly=file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/BandRefolding.vb StartLineNumber=55 StartCharacterOffset=0 EndLineNumber=55 EndCharacterOffset=0)">
+      <Category Ref="CallStackEntry" />
+      <Category Ref="CodeSchema_SourceLocation" />
+    </Node>
+    <Node Id="ExternalCodeRootNode" Category="ExternalCallStackEntry" Bounds="632.59,0,92.9866666666667,25.96" Label="External Code">
       <Category Ref="CallStackEntry" />
     </Node>
   </Nodes>
   <Links>
-    <Link Source="@10" Target="@12" Category="CallStackDirectCall" Bounds="251.774887084961,421.810180664063,132.06510925293,80.9254760742188" />
-    <Link Source="@10" Target="@18" Category="CallStackDirectCall" Bounds="450.089446822488,425.486503493881,38.5608487914202,25.0914994703809" />
-    <Link Source="@10" Target="@19" Category="CallStackDirectCall" Bounds="367.170431801229,425.486503493881,41.6317442347353,25.3230104016162" />
-    <Link Source="@11" Target="@10" Category="CallStackDirectCall" Bounds="417.084817527253,369.526403493881,6.49763169933186,21.3886937230715" />
-    <Link Source="@14" Target="@17" Category="CallStackDirectCall" Bounds="83.571479297979,145.686003493881,225.946783135535,129.635123179792" />
-    <Link Source="@14" Target="@20" Category="CallStackDirectCall" Bounds="361.516998291016,145.686004638672,58.3279113769531,134.2060546875" />
-    <Link Source="@14" Target="@5" Category="CallStackDirectCall" Bounds="332.141677856445,145.686003493881,0,21.0001" />
-    <Link Source="@15" Target="@11" Category="CallStackDirectCall" Bounds="238.104814529075,257.606203493881,144.238744489267,81.5314696822973" />
-    <Link Source="@15" Target="@12" Category="CallStackDirectCall" Bounds="231.972030639648,257.606201171875,22.9251708984375,244.850402832031" />
-    <Link Source="@15" Target="@17" Category="CallStackDirectCall" Bounds="105.436216484907,255.003132386958,74.795161770594,22.2325289021405" />
-    <Link Source="@15" Target="@20" Category="CallStackDirectCall" Bounds="250.078336893717,253.594365383384,124.651368073353,31.9977191669653" />
-    <Link Source="@15" Target="@21" Category="CallStackDirectCall" Bounds="200.89789330183,257.606203493881,8.90890263032915,21.6757789874093" />
-    <Link Source="@16" Target="(@1 @2 Type=SketchAdjust Member=(Name=adjust OverloadingParameters=[@8,@13]))" Category="CallStackDirectCall" Bounds="339.100207237201,33.7658034938812,11.8305945396667,22.0680417833068" />
-    <Link Source="@16" Target="@14" Category="CallStackDirectCall" Bounds="326.377197265625,33.7658042907715,4.495849609375,77.1009101867676" />
-    <Link Source="@17" Target="@12" Category="CallStackDirectCall" Bounds="63.9561517191289,305.759983520508,165.610059420748,198.772157000809" />
-    <Link Source="@18" Target="@12" Category="CallStackDirectCall" Bounds="308.367536810923,479.75524715961,153.307931058322,31.7745459082865" />
-    <Link Source="@18" Target="@15" Category="CallStackDirectCall" Bounds="231.666549682617,264.530853271484,230.88069152832,191.576812744141" />
-    <Link Source="@19" Target="@12" Category="CallStackDirectCall" Bounds="275.170429997396,481.446603493881,41.6317559884215,25.3230112509611" />
-    <Link Source="@19" Target="@15" Category="CallStackDirectCall" Bounds="237.07551574707,265.019317626953,94.7015228271484,190.46728515625" />
-    <Link Source="@20" Target="@11" Category="CallStackDirectCall" Bounds="420.809619588224,313.566303493881,7.69303160246949,21.5251080441593" />
-    <Link Source="@21" Target="(@1 @2 @3 Member=(Name=getDimension @9))" Category="CallStackDirectCall" Bounds="192.141657964934,313.566303493881,2.86307653141193E-06,21.0001000000001" />
-    <Link Source="@5" Target="(@1 @2 @3 Member=(Name=checkBuilder @9))" Category="CallStackDirectCall" Bounds="362.991158111127,201.646103493881,63.0054313138015,26.5097010290486" />
-    <Link Source="@5" Target="(@1 @2 @3 Member=objetiveZero)" Category="CallStackDirectCall" Bounds="332.141668591001,201.646103493881,5.72615300598045E-06,21.0001000000003" />
-    <Link Source="@5" Target="@11" Category="CallStackDirectCall" Bounds="356.416534423828,201.646102905273,41.6774291992188,134.703140258789" />
-    <Link Source="@5" Target="@15" Category="CallStackDirectCall" Bounds="250.399048022427,201.646103493881,54.6043634794272,26.1167986452114" />
-    <Link Source="@5" Target="@17" Category="CallStackDirectCall" Bounds="82.1229476928711,201.337646484375,187.493751525879,73.7783203125" />
-    <Link Source="ExternalCodeRootNode" Target="@16" Category="CallStackIndirectCall" Bounds="332.141677856445,-22.1942965061188,0,21.0001" />
+    <Link Source="@11" Target="(@1 @2 @10 Member=(Name=checkBuilder @14))" Category="CallStackDirectCall" Bounds="322.228485107422,193.839996337891,63.0053100585938,26.5096130371094" />
+    <Link Source="@11" Target="(@1 @2 @10 Member=objetiveZero)" Category="CallStackDirectCall" Bounds="416.083343505859,193.839996337891,0,21" />
+    <Link Source="@11" Target="@17" Category="CallStackDirectCall" Bounds="176.569671630859,192.075469970703,175.579864501953,30.80078125" />
+    <Link Source="@11" Target="@33" Category="CallStackDirectCall" Bounds="141.08332824707,193.180633544922,211.923446655273,189.545104980469" />
+    <Link Source="@11" Target="@36" Category="CallStackDirectCall" Bounds="435.103332519531,193.839996337891,91.8507080078125,244.930572509766" />
+    <Link Source="@15" Target="@18" Category="CallStackDirectCall" Bounds="667.083312988281,361.720001220703,65.2841796875,132.920013427734" />
+    <Link Source="@15" Target="@27" Category="CallStackDirectCall" Bounds="752.083312988281,361.720001220703,0,21" />
+    <Link Source="@16" Target="@21" Category="CallStackDirectCall" Bounds="402.256744384766,305.760009765625,63.8265991210938,192.059600830078" />
+    <Link Source="@16" Target="@37" Category="CallStackDirectCall" Bounds="394.912475585938,305.760009765625,16.6608581542969,22.7400512695313" />
+    <Link Source="@16" Target="@38" Category="CallStackDirectCall" Bounds="285.316162109375,305.748229980469,92.1998901367188,27.4441528320313" />
+    <Link Source="@17" Target="@16" Category="CallStackDirectCall" Bounds="167.899703979492,249.051116943359,198.013259887695,34.2000732421875" />
+    <Link Source="@18" Target="@19" Category="CallStackDirectCall" Bounds="669.1708984375,529.599975585938,3.395751953125,21.1141967773438" />
+    <Link Source="@18" Target="@26" Category="CallStackDirectCall" Bounds="709.762390136719,529.599975585938,90.0313110351563,27.3812866210938" />
+    <Link Source="@19" Target="@31" Category="CallStackDirectCall" Bounds="676.547241210938,585.559997558594,0.750732421875,21.0057373046875" />
+    <Link Source="@23" Target="(@1 @2 @12 Member=HealthSketch)" Category="CallStackDirectCall" Bounds="934.418212890625,697.47998046875,8.90887451171875,21.6757202148438" />
+    <Link Source="@23" Target="@20" Category="CallStackDirectCall" Bounds="966.659484863281,697.47998046875,78.3410034179688,27.0615234375" />
+    <Link Source="@23" Target="@28" Category="CallStackDirectCall" Bounds="847.340759277344,697.47998046875,54.604248046875,26.11669921875" />
+    <Link Source="@24" Target="@20" Category="CallStackDirectCall" Bounds="891.442504882813,641.52001953125,171.634643554688,81.1305541992188" />
+    <Link Source="@24" Target="@23" Category="CallStackDirectCall" Bounds="869.175537109375,641.52001953125,34.5028686523438,24.7536010742188" />
+    <Link Source="@24" Target="@28" Category="CallStackDirectCall" Bounds="826.275329589844,641.52001953125,24.8079833984375,78.5762329101563" />
+    <Link Source="@25" Target="@18" Category="CallStackDirectCall" Bounds="699.131774902344,473.640014648438,47.82861328125,25.7354431152344" />
+    <Link Source="@25" Target="@22" Category="CallStackDirectCall" Bounds="729.268676757813,473.640014648438,41.8146362304688,189.226745605469" />
+    <Link Source="@25" Target="@29" Category="CallStackDirectCall" Bounds="805.878784179688,471.915222167969,164.019226074219,134.991516113281" />
+    <Link Source="@26" Target="@24" Category="CallStackDirectCall" Bounds="851.083312988281,585.559997558594,0,21" />
+    <Link Source="@26" Target="@29" Category="CallStackDirectCall" Bounds="880.077270507813,585.559997558594,58.7977294921875,26.3225708007813" />
+    <Link Source="@27" Target="(@1 @2 @12 Member=(Name=CalculateGain @14))" Category="CallStackDirectCall" Bounds="784.324584960938,417.679992675781,66.168701171875,26.6388549804688" />
+    <Link Source="@27" Target="@18" Category="CallStackDirectCall" Bounds="680.953491210938,417.679992675781,60.2281494140625,78.514404296875" />
+    <Link Source="@27" Target="@25" Category="CallStackDirectCall" Bounds="756.490417480469,417.679992675781,7.29229736328125,21.4778137207031" />
+    <Link Source="@28" Target="@24" Category="CallStackDirectCall" Bounds="812.083312988281,648.903747558594,24.8079833984375,78.5762329101563" />
+    <Link Source="@29" Target="(@1 @2 @12 Member=(Name=GetIndexVariable @14))" Category="CallStackDirectCall" Bounds="1004.14947509766,641.52001953125,56.6990356445313,26.2221069335938" />
+    <Link Source="@29" Target="@15" Category="CallStackDirectCall" Bounds="812.772094726563,363.9013671875,163.311218261719,251.658630371094" />
+    <Link Source="@30" Target="@41" Category="CallStackDirectCall" Bounds="726.083312988281,249.800003051758,0,20.9999847412109" />
+    <Link Source="@31" Target="@22" Category="CallStackDirectCall" Bounds="688.521118164063,641.52001953125,18.4844360351563,22.9863891601563" />
+    <Link Source="@32" Target="@11" Category="CallStackDirectCall" Bounds="450.604888916016,137.880004882813,53.0359802246094,26.0341491699219" />
+    <Link Source="@32" Target="@36" Category="CallStackDirectCall" Bounds="530.083312988281,137.880004882813,0,300.799987792969" />
+    <Link Source="@32" Target="@39" Category="CallStackDirectCall" Bounds="11.7311677932739,136.044891357422,484.572573661804,303.006744384766" />
+    <Link Source="@33" Target="@17" Category="CallStackDirectCall" Bounds="101.753799438477,258.599945068359,37.3863677978516,133.120056152344" />
+    <Link Source="@33" Target="@21" Category="CallStackDirectCall" Bounds="177.963394165039,415.260009765625,176.439804077148,83.1797180175781" />
+    <Link Source="@33" Target="@36" Category="CallStackDirectCall" Bounds="178.020004272461,409.543334960938,290.028091430664,40.9568786621094" />
+    <Link Source="@33" Target="@39" Category="CallStackDirectCall" Bounds="99.2567596435547,417.679992675781,28.5177841186523,24.1796264648438" />
+    <Link Source="@33" Target="@40" Category="CallStackDirectCall" Bounds="159.783828735352,417.679992675781,31.492919921875,24.4769897460938" />
+    <Link Source="@34" Target="(@1 @2 Type=SketchAdjust Member=(Name=adjust OverloadingParameters=[@13,@8]))" Category="CallStackDirectCall" Bounds="461.881469726563,81.9199981689453,45.2386779785156,25.5712814331055" />
+    <Link Source="@34" Target="@32" Category="CallStackDirectCall" Bounds="530.083312988281,81.9199981689453,0,21" />
+    <Link Source="@35" Target="@42" Category="CallStackDirectCall" Bounds="696.943603515625,81.9199981689453,33.9990234375,24.7089309692383" />
+    <Link Source="@36" Target="@21" Category="CallStackDirectCall" Bounds="423.308349609375,473.640014648438,71.9822692871094,26.8541564941406" />
+    <Link Source="@37" Target="@21" Category="CallStackDirectCall" Bounds="380.083343505859,361.720001220703,0,132.920013427734" />
+    <Link Source="@37" Target="@33" Category="CallStackDirectCall" Bounds="186.779144287109,361.317474365234,140.036468505859,33.0651550292969" />
+    <Link Source="@38" Target="@21" Category="CallStackDirectCall" Bounds="259.757751464844,361.720001220703,114.140228271484,133.266754150391" />
+    <Link Source="@38" Target="@33" Category="CallStackDirectCall" Bounds="171.601989746094,361.720001220703,40.605712890625,25.2477416992188" />
+    <Link Source="@39" Target="@17" Category="CallStackDirectCall" Bounds="77.0833358764648,258.274993896484,12.3320236206055,189.404998779297" />
+    <Link Source="@40" Target="(@1 @2 @10 Member=(Name=getDimension @14))" Category="CallStackDirectCall" Bounds="215.08332824707,473.640014648438,0,21" />
+    <Link Source="@41" Target="(@1 @2 Type=Optimizador Member=HighPriority)" Category="CallStackDirectCall" Bounds="645.850463867188,305.599884033203,53.8875122070313,26.2221374511719" />
+    <Link Source="@41" Target="@15" Category="CallStackDirectCall" Bounds="732.114074707031,305.760009765625,10.1463012695313,21.8379516601563" />
+    <Link Source="@42" Target="(@1 @2 @5 Member=(Name=.ctor OverloadingParameters=[(@4 Namespace=Inventor Type=Document)]))" Category="CallStackDirectCall" Bounds="805.794372558594,135.31884765625,152.335815429688,31.9277496337891" />
+    <Link Source="@42" Target="(@1 @2 Type=InventorFile Member=(Name=.ctor OverloadingParameters=[(@4 Namespace=Inventor Type=Application)]))" Category="CallStackDirectCall" Bounds="756.083312988281,137.880004882813,0,21" />
+    <Link Source="@42" Target="(@1 @2 Type=InventorFile Member=(Name=CreateFileCopy OverloadingParameters=[@13,@13]))" Category="CallStackDirectCall" Bounds="659.192443847656,137.880004882813,65.113525390625,26.5967559814453" />
+    <Link Source="@42" Target="@9" Category="CallStackDirectCall" Bounds="786.236999511719,137.880004882813,61.426025390625,26.4415283203125" />
+    <Link Source="@9" Target="(@1 @2 @5 Member=(Name=ChangeMainObjetive OverloadingParameters=[@8]))" Category="CallStackDirectCall" Bounds="886.083312988281,193.839996337891,0,21" />
+    <Link Source="@9" Target="(@1 @2 @5 Member=FindMaindSketch)" Category="CallStackDirectCall" Bounds="925.051147460938,193.839996337891,81.5255737304688,27.1557769775391" />
+    <Link Source="@9" Target="@30" Category="CallStackDirectCall" Bounds="771.69091796875,193.839996337891,77.2802124023438,27.0287475585938" />
+    <Link Source="ExternalCodeRootNode" Target="@34" Category="CallStackIndirectCall" Bounds="573.069458007813,25.9599990844727,71.453125,26.8356781005859" />
+    <Link Source="ExternalCodeRootNode" Target="@35" Category="CallStackIndirectCall" Bounds="679.083312988281,25.9599990844727,0,21" />
   </Links>
   <Categories>
     <Category Id="CallStackDirectCall" Label="Call Stack direct call" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Call Stack direct call" OutgoingActionLabel="Call Stack direct call" />
@@ -111,6 +254,7 @@
     <Property Id="Bounds" DataType="System.Windows.Rect" />
     <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
     <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsConstructor" Label="Is Constructor" Description="Flag to indicate the method is a constructor" DataType="System.Boolean" />
     <Property Id="CodeSchemaProperty_IsHideBySignature" Label="Hides By Signature" Description="Flag to indicate the method hides another method of the same signature" DataType="System.Boolean" />
     <Property Id="CodeSchemaProperty_IsPrivate" Label="Is Private" Description="Flag to indicate the scope is Private" DataType="System.Boolean" />
     <Property Id="CodeSchemaProperty_IsPublic" Label="Is Public" Description="Flag to indicate the scope is Public" DataType="System.Boolean" />
@@ -144,25 +288,45 @@
   <IdentifierAliases>
     <Alias n="1" Uri="Assembly=$(f6617917-0644-4569-a879-f6034a53afa6.OutputPathUri)" />
     <Alias n="2" Id="Namespace=BandFoldingIterator" />
-    <Alias n="3" Id="Type=RebuilderClass" />
     <Alias n="4" Uri="Assembly=file:///C:/Program Files/Autodesk/Inventor 2019/Bin/Public Assemblies/Autodesk.Inventor.Interop.dll" />
-    <Alias n="5" Id="(@1 @2 @3 Member=(Name=changeParameter OverloadingParameters=[(@4 Namespace=Inventor Type=Sketch3D)]))" />
+    <Alias n="5" Id="Type=BandRefolding" />
     <Alias n="6" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.6.1/mscorlib.dll" />
     <Alias n="7" Id="Namespace=System" />
-    <Alias n="8" Id="(@6 @7 Type=String)" />
-    <Alias n="9" Id="OverloadingParameters=[@8]" />
-    <Alias n="10" Id="(@1 @2 @3 Member=(Name=checkGaps @9))" />
-    <Alias n="11" Id="(@1 @2 @3 Member=(Name=checkOtherVariables @9))" />
-    <Alias n="12" Id="(@1 @2 @3 Member=(Name=getParameter @9))" />
-    <Alias n="13" Id="(@6 @7 Type=Double)" />
-    <Alias n="14" Id="(@1 @2 @3 Member=(Name=adjust OverloadingParameters=[@8,@13]))" />
-    <Alias n="15" Id="(@1 @2 @3 Member=(Name=iterate OverloadingParameters=[@8,@13]))" />
-    <Alias n="16" Id="(@1 @2 Type=Iterator Member=(Name=Button1_Click OverloadingParameters=[(@6 @7 Type=Object),(@6 @7 Type=EventArgs)]))" />
-    <Alias n="17" Id="(@1 @2 @3 Member=(Name=calculateGain OverloadingParameters=[@13,@8]))" />
-    <Alias n="18" Id="(@1 @2 @3 Member=(Name=checkAngulos OverloadingParameters=[@8,@13,@13,@13]))" />
-    <Alias n="19" Id="(@1 @2 @3 Member=(Name=checkDimension OverloadingParameters=[@8,@13,@13,@13]))" />
-    <Alias n="20" Id="(@1 @2 @3 Member=checkBuilder)" />
-    <Alias n="21" Id="(@1 @2 @3 Member=makeallDriven)" />
+    <Alias n="8" Id="(@6 @7 Type=Double)" />
+    <Alias n="9" Id="(@1 @2 @5 Member=(Name=StartFolding OverloadingParameters=[@8]))" />
+    <Alias n="10" Id="Type=RebuilderClass" />
+    <Alias n="11" Id="(@1 @2 @10 Member=(Name=changeParameter OverloadingParameters=[(@4 Namespace=Inventor Type=Sketch3D)]))" />
+    <Alias n="12" Id="Type=SketchOptimizer" />
+    <Alias n="13" Id="(@6 @7 Type=String)" />
+    <Alias n="14" Id="OverloadingParameters=[@13]" />
+    <Alias n="15" Id="(@1 @2 @12 Member=(Name=adjustParameter @14))" />
+    <Alias n="16" Id="(@1 @2 @10 Member=(Name=checkGaps @14))" />
+    <Alias n="17" Id="(@1 @2 @10 Member=(Name=checkOtherVariables @14))" />
+    <Alias n="18" Id="(@1 @2 @12 Member=(Name=CheckOtherVariables @14))" />
+    <Alias n="19" Id="(@1 @2 @12 Member=(Name=CheckRange @14))" />
+    <Alias n="20" Id="(@1 @2 @12 Member=(Name=GetDimension @14))" />
+    <Alias n="21" Id="(@1 @2 @10 Member=(Name=getParameter @14))" />
+    <Alias n="22" Id="(@1 @2 @12 Member=(Name=GetParameter @14))" />
+    <Alias n="23" Id="(@1 @2 @12 Member=(Name=IsEditable @14))" />
+    <Alias n="24" Id="(@1 @2 @12 Member=(Name=IsSolvable @14))" />
+    <Alias n="25" Id="(@1 @2 @12 Member=(Name=Iterate @14))" />
+    <Alias n="26" Id="(@1 @2 @12 Member=(Name=IterateOutRange @14))" />
+    <Alias n="27" Id="(@1 @2 @12 Member=(Name=MainIteration @14))" />
+    <Alias n="28" Id="(@1 @2 @12 Member=(Name=RecoverSketch @14))" />
+    <Alias n="29" Id="(@1 @2 @12 Member=(Name=StartOver @14))" />
+    <Alias n="30" Id="(@1 @2 @5 Member=(Name=StartSequence @14))" />
+    <Alias n="31" Id="(@1 @2 @12 Member=(Name=CheckLimits OverloadingParameters=[(@1 @2 Type=DimDescriptor),@8]))" />
+    <Alias n="32" Id="(@1 @2 @10 Member=(Name=adjust OverloadingParameters=[@13,@8]))" />
+    <Alias n="33" Id="(@1 @2 @10 Member=(Name=iterate OverloadingParameters=[@13,@8]))" />
+    <Alias n="34" Id="(@1 @2 Type=Iterator Member=(Name=Button1_Click OverloadingParameters=[(@6 @7 Type=Object),(@6 @7 Type=EventArgs)]))" />
+    <Alias n="35" Id="(@1 @2 Type=Iterator Member=(Name=Iterator_Activated OverloadingParameters=[(@6 @7 Type=Object),(@6 @7 Type=EventArgs)]))" />
+    <Alias n="36" Id="(@1 @2 @10 Member=(Name=calculateGain OverloadingParameters=[@8,@13]))" />
+    <Alias n="37" Id="(@1 @2 @10 Member=(Name=checkAngulos OverloadingParameters=[@13,@8,@8,@8]))" />
+    <Alias n="38" Id="(@1 @2 @10 Member=(Name=checkDimension OverloadingParameters=[@13,@8,@8,@8]))" />
+    <Alias n="39" Id="(@1 @2 @10 Member=checkBuilder)" />
+    <Alias n="40" Id="(@1 @2 @10 Member=makeallDriven)" />
+    <Alias n="41" Id="(@1 @2 @12 Member=Run)" />
+    <Alias n="42" Id="(@1 @2 Type=Iterator Member=StartIterator)" />
   </IdentifierAliases>
   <Styles>
     <Style TargetType="Link" GroupLabel="Current Call Stack Link" ValueLabel="True" Visibility="Hidden">
@@ -427,7 +591,9 @@
     </Style>
   </Styles>
   <Paths>
+    <Path Id="f6617917-0644-4569-a879-f6034a53afa6.OutputPath" Value="C:\Users\giova\source\repos\BandFoldingIterator\BandFoldingIterator\bin\Debug\BandFoldingIterator.exe" />
     <Path Id="f6617917-0644-4569-a879-f6034a53afa6.OutputPathUri" Value="file:///C:/Users/giova/source/repos/BandFoldingIterator/BandFoldingIterator/bin/Debug/BandFoldingIterator.exe" />
+    <Path Id="FxReferenceAssemblies" Value="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework" />
     <Path Id="FxReferenceAssembliesUri" Value="file:///C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework" />
   </Paths>
 </DirectedGraph>

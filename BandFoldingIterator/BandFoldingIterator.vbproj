@@ -78,7 +78,14 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BandRefolding.vb" />
+    <Compile Include="Comandos.vb" />
     <Compile Include="Conversions.vb" />
+    <Compile Include="DimDescriptor.vb" />
+    <Compile Include="InventorFile.vb" />
+    <Compile Include="Nombres.vb" />
+    <Compile Include="Optimizador.vb" />
+    <Compile Include="Parser.vb" />
     <Compile Include="SketchAdjust.vb" />
     <Compile Include="Iterator.vb">
       <SubType>Form</SubType>
@@ -102,6 +109,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SketchOptimizer.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Iterator.resx">

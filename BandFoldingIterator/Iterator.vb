@@ -7,8 +7,12 @@ Imports Inventor
 Public Class Iterator
     Dim oApp As Inventor.Application
     Dim oDoc As Inventor.Document
-    Dim started As Boolean
+    Dim started, running, done As Boolean
     Dim oDesignProjectMgr As DesignProjectManager
+    Dim Banda As InventorFile
+    Dim fileName, pattern As String
+    Dim folding As BandRefolding
+    Dim newName As Nombres
 
     Public Sub New()
 
@@ -52,12 +56,48 @@ Public Class Iterator
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If started Then
-            Dim Ajustador As New SketchAdjust(oApp)
-            Dim theta As Double = 1.76 - Math.PI / 2
-            Dim fileName As String = "Sketch3DIterator1.ipt"
-            Ajustador.adjust(fileName, theta)
-
-        End If
+        Try
+            done = StartIterator()
+            If done Then
+                Me.Close()
+            End If
+        Catch ex As Exception
+            Debug.Print(ex.ToString())
+            Debug.Print("Unable to find Document")
+        End Try
     End Sub
+
+    Private Sub Iterator_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        Try
+            done = StartIterator()
+            If done Then
+                Me.Close()
+            End If
+        Catch ex As Exception
+            Debug.Print(ex.ToString())
+            Debug.Print("Unable to find Document")
+        End Try
+    End Sub
+
+    Public Function StartIterator() As Boolean
+        Dim b As Boolean
+        Try
+            If (started And (Not running)) Then
+
+                Banda = New InventorFile(oApp)
+                fileName = "BandFoldingIteration0.ipt"
+                pattern = "Iteration"
+                newname = New Nombres
+                folding = New BandRefolding(Banda.CreateFileCopy(fileName, newName.IncrementLabelIpt(fileName, pattern)))
+                b = folding.StartFolding(0.77)
+
+            End If
+
+        Catch ex As Exception
+            Debug.Print(ex.ToString())
+            b = False
+        End Try
+        Return b
+    End Function
+
 End Class

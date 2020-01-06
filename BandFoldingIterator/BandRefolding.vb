@@ -4,18 +4,28 @@
 Public Class BandRefolding
     Dim Sk3D As Sketch3D
     Dim oDoc As PartDocument
-    Public alpha, beta As Double
+    Public alpha, beta, setPoint As Double
     Dim comando As Comandos
     Dim sketchos() As SketchOptimizer
     Dim label As New Nombres
     Dim cantidadSketches As Integer
-    Public healthy, running, done As Boolean
+    Public healthy, running, done, driftDone, revision As Boolean
+    Dim monitor As DesignMonitoring
+    Dim optimoBanda As Optimizador
+    Dim medicoBanda As DesignDoctor
+
 
 
     Public Sub New(docu As Inventor.Document)
         oDoc = docu
         comando = New Comandos(docu.Parent)
+        monitor = New DesignMonitoring(oDoc)
         GetSketches()
+        optimoBanda = New Optimizador(FindMainSketcho().optVariables)
+        healthy = True
+        driftDone = False
+        optimoBanda.DownScale(5)
+        medicoBanda = New DesignDoctor(docu)
     End Sub
     Function SetApha(a As Double) As Double
         alpha = a
@@ -46,42 +56,77 @@ Public Class BandRefolding
 
         Return p
     End Function
+    Function EstimateSetPoint(a As Double) As Double
+        Dim d, p As Double
+
+        p = FindMainSketcho().GetParameter(optimoBanda.HighPriority())._Value
+        d = optimoBanda.Ganancia(a, p) * p
+        Return d
+    End Function
     Function StartFolding(a As Double) As Boolean
         running = True
         done = False
         Try
+            alpha = a
+            While (Not IsAcomplish(a) And healthy)
+                running = MakeSmallDrift(a)
+            End While
 
-            If ChangeMainObjetive(a * 1000) = a * 1000 Then
-                While IsDocHealthy()
-                    StartSequence(FindMaindSketch.Name)
-                End While
-            End If
             beta = GetBeta()
 
         Catch ex As Exception
             healthy = False
             Debug.Print(ex.ToString())
-            RecoverDoc(FindMaindSketch.Name)
+            RecoverDoc(FindMainSketch.Name)
 
         End Try
-        done = True
+
         running = False
         Return done
     End Function
+    Function MakeSmallDrift(a As Double) As Boolean
+        Dim s As Double
+
+        While (IsDocHealthy() And (Not IsDriftDone()))
+            s = EstimateSetPoint(a)
+            If ChangeMainObjetive(s * 1000) = s * 1000 Then
+
+                StartSequence(FindMainSketch().Name)
+            End If
+        End While
+        Return IsDriftDone()
+    End Function
+    Function IsDriftDone() As Boolean
+        Return FindMainSketcho.GotTarget(optimoBanda.HighPriority())
+    End Function
 
     Function IsDocHealthy() As Boolean
-        If oDoc._SickNodesCount > 0 Then
+        Try
+            If monitor.PartHasProblems(oDoc) Then
+                healthy = False
+
+            Else
+                If oDoc._SickNodesCount > 0 Then
+                    healthy = False
+                    medicoBanda.UndoFeature(monitor.sickFeature)
+                    IsDocHealthy()
+                Else
+                    healthy = True
+                End If
+            End If
+        Catch ex As Exception
+            Debug.Print(ex.ToString())
             healthy = False
-        Else
-            healthy = True
-        End If
+        End Try
+
+
         Return healthy
     End Function
     Public Function Run() As Boolean
         running = True
         done = False
         Try
-            StartSequence(FindMaindSketch().Name)
+            StartSequence(FindMainSketch().Name)
             If done Then
                 Debug.Print("!!! done !!!")
             End If
@@ -93,7 +138,7 @@ Public Class BandRefolding
         End Try
         Return done
     End Function
-    Function FindMaindSketch() As Sketch3D
+    Function FindMainSketch() As Sketch3D
         Return FindSketch("s0")
     End Function
     Function FindSketch(s As String) As Sketch3D
@@ -123,16 +168,25 @@ Public Class BandRefolding
         End If
         Return b
     End Function
+    Function IsAcomplish(a As Double) As Boolean
+
+        Return optimoBanda.IsPrecise(a, GetMainVariable())
+    End Function
+    Function GetMainVariable() As Double
+        Dim d As Double
+        d = FindMainSketcho().GetParameter(optimoBanda.HighPriority())._Value
+        Return d
+    End Function
     Function ChangeMainObjetive(a As Double) As Double
-        Dim sketcho As SketchOptimizer = FindMaindSketcho()
+        Dim sketcho As SketchOptimizer = FindMainSketcho()
         If Not sketcho.optVariables(0).PO.Setpoint = a Then
             sketcho.optVariables(0).PO.Setpoint = a
         End If
         Return sketcho.optVariables(0).PO.Setpoint
     End Function
-    Function FindMaindSketcho() As SketchOptimizer
+    Function FindMainSketcho() As SketchOptimizer
         For Each sketcho As SketchOptimizer In sketchos
-            If FindMaindSketch().Equals(sketcho.Sk3D) Then
+            If FindMainSketch().Equals(sketcho.Sk3D) Then
                 Return sketcho
             End If
         Next
@@ -146,48 +200,40 @@ Public Class BandRefolding
         Next
         Return sketchos(0)
     End Function
-    Function StartMainIterator() As Boolean
-        Dim b As Boolean
 
-        Try
-            b = StartIterator(FindMaindSketch.Name)
-        Catch ex As Exception
 
-        End Try
-        Return b
-    End Function
-    Function StartIterator(s As String) As Boolean
-        Dim b As Boolean = False
-        Dim i As Integer
-        Try
-            i = Array.IndexOf(sketchos, FindSketcho(s))
-            While (IsDocHealthy() And (i >= 0))
-
-                If Not sketchos(i).running Then
-                    sketchos(i).Run()
-
-                End If
-
-            End While
-        Catch ex As Exception
-            Debug.Print(ex.ToString())
-            StartOver(s)
-        End Try
-        Return b
-    End Function
     Function StartSequence(s As String) As Integer
-        Dim i, j As Integer
-        Dim b As Boolean = False
+        Dim i, j, k As Integer
+
         Try
             i = Array.IndexOf(sketchos, FindSketcho(s))
             j = sketchos.Length - 1
-            While IsDocHealthy() And (j >= i)
+            k = j
+            While IsDocHealthy() And ((j >= i) And (j <= k)) And ((Not IsDriftDone()) Or revision)
+                driftDone = False
                 sketchos(j).Run()
                 If sketchos(j).done Then
-                    If j = i Then
-                        b = True
+                    sketchos(j).done = False
+                    If j < k And j >= i Then
+                        revision = True
+                        StartSequence(sketchos(j + 1).Sk3D.Name)
+                        revision = False
+
                     End If
                     j = j - 1
+
+                Else
+                    If sketchos(j).sick Then
+                        sketchos(j).sick = False
+                        If j = i Then
+                            Debug.Print("Not posible")
+                            StartAgain()
+                        Else
+                            j = j + 1
+                        End If
+
+
+                    End If
                 End If
             End While
 
@@ -197,7 +243,35 @@ Public Class BandRefolding
             StartOver(s)
         End Try
 
-        Return 0
+        Return j
+    End Function
+    Function IsFoldingDone(s As String) As Boolean
+        Dim i As Integer
+        i = Array.IndexOf(sketchos, FindSketcho(s))
+
+        IsFoldingDone = IsSketchInRange(s)
+        If IsFoldingDone Then
+            If s = FindMainSketch().Name Then
+                IsFoldingDone = IsAcomplish(alpha)
+                If IsFoldingDone Then
+                    driftDone = True
+                    done = True
+                    Return True
+                Else
+                    Return False
+                End If
+            Else
+                Return True
+            End If
+
+        End If
+
+        Return False
+    End Function
+    Function IsSketchInRange(s As String) As Boolean
+        Dim i As Integer
+        i = Array.IndexOf(sketchos, FindSketcho(s))
+        Return sketchos(i).AreAllInRange()
     End Function
 
     Function StartOver(s As String) As Boolean
@@ -220,22 +294,20 @@ Public Class BandRefolding
     End Function
 
     Function RecoverDoc(s As String) As Boolean
-        Dim h As Boolean = False
+        Dim ok As Boolean = False
         Try
-            While ((Not h) And comando.IsUndoable())
+            While ((Not ok) And comando.IsUndoable())
                 comando.UndoCommand()
                 Debug.Print("undoing")
-                If IsFeasible(s) Then
-                    h = True
-                End If
+                ok = IsFeasible(s)
 
             End While
-            h = IsDocHealthy()
+
         Catch ex As Exception
             Debug.Print(ex.ToString())
             StartOver(s)
         End Try
-        Return h
+        Return ok
     End Function
     Public Function IsFeasible(s As String) As Boolean
         Dim b As Boolean = False
@@ -260,7 +332,7 @@ Public Class BandRefolding
     Function StartAgain() As Boolean
         Dim b As Boolean = False
         Try
-            RecoverDoc(FindMaindSketch.Name)
+            RecoverDoc(FindMainSketch.Name)
             Debug.Print("StartAgain")
             b = Run()
 

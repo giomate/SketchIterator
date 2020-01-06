@@ -10,7 +10,10 @@ Public Class SketchOptimizer
     Dim traductor As Parser
     Dim comando As Comandos
     Dim parametro, kapput As Parameter
-    Public healthy, running, done As Boolean
+    Public healthy, running, done, sick As Boolean
+    Dim monitor As DesignMonitoring
+    Dim medico As DesignDoctor
+
 
 
     Public Sub New(sketchName As String, docu As Inventor.Document)
@@ -20,6 +23,10 @@ Public Class SketchOptimizer
         traductor = New Parser(Sk3D)
         traductor.FillValues(optVariables)
         optimo = New Optimizador(optVariables)
+        monitor = New DesignMonitoring(docu)
+        medico = New DesignDoctor(docu)
+        sick = False
+        done = False
     End Sub
     Public Sub OpenSketch()
         Sk3D = oDoc.ComponentDefinition.Sketches3D.Item(sketchName)
@@ -27,58 +34,103 @@ Public Class SketchOptimizer
     Public Sub OpenSketch(sketchName As String)
         Sk3D = oDoc.ComponentDefinition.Sketches3D.Item(sketchName)
     End Sub
-    Function Run() As Double
+    Function Run() As Boolean
         running = True
         done = False
         Try
+            If Not sick Then
+                If traductor.IsVariableInSketch(optimo.HighPriority()) Then
+                    Sk3D.Visible = True
+                    If adjustParameter(optimo.HighPriority()) Then
+                        Debug.Print("!!! done !!!")
+                        MakeallDriven()
+                        If IsBuilt(optimo.HighPriority()) Then
+                            If IsStatusDocOk(oDoc) Then
+                                done = True
 
-            adjustParameter(optimo.HighPriority())
-            If done Then
-                Debug.Print("!!! done !!!")
+                            Else
+                                StartOver(optimo.HighPriority())
+                            End If
+
+                        End If
+
+                    End If
+                    Sk3D.Visible = False
+                End If
+
+
+            Else
+                done = False
             End If
+
+
             running = False
         Catch ex As Exception
             Debug.Print(ex.ToString())
             running = False
         End Try
-        Return CurrentError(optimo.HighPriority())
+        Return done
+    End Function
+    Function IsSketchsVariable(variable) As Boolean
+
+        Return 0
     End Function
 
-    Public Sub adjustParameter(name As String)
+    Function adjustParameter(name As String) As Boolean
         Dim p As Parameter = Nothing
 
         Try
 
-            p = GetParameter(name)
+            MakeSketchesInvisible()
 
-            Sk3D.Edit()
+            'Sk3D.Edit()
             MakeallDriven()
             CheckOtherVariables(name)
             If MainIteration(name) > 0 Then
-                Sk3D.Solve()
-                Sk3D.ExitEdit()
-                If IsBuilt(name) Then
-                    done = True
-                End If
-            End If
+                If Sk3D.Visible Then
+                    Sk3D.Solve()
+                    'Sk3D.ExitEdit()
+                    If IsBuilt(name) Then
+                        If IsStatusDocOk(oDoc) Then
+                            sick = False
 
+                        Else
+                            StartOver(name)
+                        End If
+
+                    End If
+                End If
+
+
+            Else
+                RecoverDocument(name)
+            End If
+            MakeSketchesInvisible()
 
 
 
         Catch ex4 As Exception
+            Sk3D.Visible = True
 
-            comando.UndoCommand()
-            MakeallDriven()
-            optimo.IncrementResolution()
-
+            p = GetParameter(name)
             Debug.Print(ex4.ToString())
             Debug.Print("Fail adjusting " & name & " ...last value:" & p.Value.ToString)
             StartOver(name)
-            Exit Sub
+            Return False
         End Try
+        Return Not sick
+    End Function
+    Function MakeSketchesInvisible() As Integer
 
+        Dim i As Integer = 0
+        For Each sketch As Sketch3D In oDoc.ComponentDefinition.Sketches3D
+            sketch.Visible = False
+            i = i + 1
+        Next
 
-    End Sub
+        Return i
+
+    End Function
     Function IsBuilt(name As String) As Boolean
         Dim b As Boolean
         Try
@@ -113,18 +165,19 @@ Public Class SketchOptimizer
                 If GotTarget(name) Then
                     done = True
                 Else
-                    While Not (GotTarget(name))
+                    While ((Not GotTarget(name)) And (Not sick))
                         p = Iterate(name)
                         CheckOtherVariables(name)
                         CalculateGain(name)
                     End While
                 End If
+                If sick Then
+                    Return 0
+                End If
             End If
 
         Catch ex As Exception
-            comando.UndoCommand()
-            MakeallDriven()
-            optimo.IncrementResolution()
+
 
             Debug.Print(ex.ToString())
             Debug.Print("Fail adjusting " & p.Name & " ...last value:" & p.Value.ToString)
@@ -150,20 +203,23 @@ Public Class SketchOptimizer
     Public Function Iterate(name As String) As Parameter
         Dim pit As Parameter = Nothing
 
-        Dim g, sp As Double
+        Dim g As Double
 
         Try
+            If name = optimo.HighPriority Then
+                MakeallDrivenExc(name)
+            Else
+                GetDimension(name).Driven = False
+            End If
 
-            GetDimension(name).Driven = False
-            sp = GetSetPoint(name)
             pit = GetParameter(name)
             If IsSolvable(name) Then
-                While (Not IsPreciso(name))
+                While ((Not IsPreciso(name)) And (Not sick))
                     g = CalculateGain(name)
                     pit.Value = pit.Value * g
                     Debug.Print("iterating  " & pit.Name & " = " & pit.Value.ToString)
 
-                    If IsSolvable(name) Then
+                    If IsFoldable(name) Then
                         CheckOtherVariables(pit.Name)
                         optimo.DecrementResolution()
                         healthy = True
@@ -181,8 +237,7 @@ Public Class SketchOptimizer
         Catch ex As Exception
             Debug.Print(ex.ToString())
             Debug.Print("Fail adjusting " & name & " ...last value:" & pit.Value.ToString)
-            RecoverSketch(name)
-            optimo.IncrementResolution()
+
             healthy = False
 
             StartOver(name)
@@ -203,12 +258,12 @@ Public Class SketchOptimizer
             sp = GetSetPoint(name)
             pit = GetParameter(name)
             If IsSolvable(name) Then
-                While (Not IsBetweenRange(name))
+                While ((Not IsBetweenRange(name)) And (Not sick))
                     g = CalculateGain(name)
                     pit.Value = pit.Value * g
                     Debug.Print(" Out of the Range  " & pit.Name & " = " & pit.Value.ToString)
 
-                    If IsSolvable(name) Then
+                    If IsFoldable(name) Then
                         'CheckOtherVariables(pit.Name)
                         optimo.DecrementResolution()
                         healthy = True
@@ -225,8 +280,7 @@ Public Class SketchOptimizer
 
         Catch ex As Exception
 
-            RecoverSketch(name)
-            optimo.IncrementResolution()
+
             healthy = False
             Debug.Print(ex.ToString())
             Debug.Print("Fail adjusting " & name & " ...last value:" & pit.Value.ToString)
@@ -238,13 +292,40 @@ Public Class SketchOptimizer
         Return pit
     End Function
     Sub StartOver(name As String)
+        Try
+            RecoverSketch(name)
+            optimo.IncrementResolution()
+            If Not RecoverSketch(name) Then
+                MakeallDriven()
+                RecoverSketch(name)
+            Else
+                If GetIndexVariable(name) < optVariables.Length - 1 Then
+                    adjustParameter(optVariables(GetIndexVariable(name) + 1).PO.Name)
+                Else
+                    Debug.Print("StartOver")
+                    StartAgain(name)
+                End If
+            End If
+
+
+        Catch ex As Exception
+            Debug.Print("StartOver")
+            StartAgain(name)
+        End Try
+
+
+    End Sub
+    Sub StartAgain(name As String)
+        RecoverSketch(name)
+        optimo.IncrementResolution()
         MakeallDriven()
         If GetIndexVariable(name) < optVariables.Length - 1 Then
             adjustParameter(optVariables(GetIndexVariable(name) + 1).PO.Name)
         Else
 
-            Debug.Print("StartOver")
-            adjustParameter(optVariables(0).PO.Name)
+            Debug.Print("StartAgain")
+            sick = True
+            Run()
         End If
 
     End Sub
@@ -254,14 +335,18 @@ Public Class SketchOptimizer
             If GetDimension(n).Driven Then
                 GetDimension(n).Driven = False
             End If
-            Sk3D.Edit()
 
             If HealthSketch() Then
-                h = True
-                Debug.Print("!!Sketch Healthy!!")
-            Else
-                RecoverSketch(n)
-            End If
+                    h = True
+                    Debug.Print("!!Sketch Healthy!!")
+                Else
+                    RecoverSketch(n)
+                End If
+
+
+
+
+
 
         Catch ex As Exception
             h = False
@@ -270,8 +355,6 @@ Public Class SketchOptimizer
             Debug.Print("Fail adjusting " & n & " ...last value:" & kapput.Value.ToString)
             Debug.Print(Sk3D.HealthStatus.ToString)
 
-            RecoverSketch(n)
-            optimo.IncrementResolution()
 
             StartOver(kapput.Name)
 
@@ -286,7 +369,12 @@ Public Class SketchOptimizer
                 GetDimension(n).Driven = False
             End If
             If IsEditable(n) Then
-                Sk3D.Solve()
+                If monitor.AreDimensionsHealthy(Sk3D) Then
+                    Sk3D.Solve()
+                Else
+                    MakeallDriven()
+                End If
+
             End If
 
             If HealthSketch() Then
@@ -297,14 +385,13 @@ Public Class SketchOptimizer
             End If
 
         Catch ex As Exception
+            Sk3D.Visible = True
             s = False
             kapput = GetParameter(n)
             Debug.Print(ex.ToString())
             Debug.Print("Fail adjusting " & n & " ...last value:" & kapput.Value.ToString)
             Debug.Print(Sk3D.HealthStatus.ToString)
 
-            RecoverSketch(n)
-            optimo.IncrementResolution()
 
             StartOver(kapput.Name)
             Return s
@@ -312,29 +399,89 @@ Public Class SketchOptimizer
         End Try
         Return s
     End Function
-    Sub RecoverSketch(name As String)
-        Dim out As Boolean = True
+    Public Function IsFoldable(n As String) As Boolean
+        Dim s As Boolean = False
         Try
-            While (out And comando.IsUndoable())
-                comando.UndoCommand()
-                Debug.Print("undoing")
+            If GetDimension(n).Driven Then
+                GetDimension(n).Driven = False
+            End If
+            If IsSolvable(n) Then
+                oDoc.Update()
+                If IsStatusDocOk(oDoc) Then
+                    s = True
+                    Debug.Print("!!Keep going!!")
+                Else
+                    Debug.Print(monitor.sickFeature.ToString)
+                    RecoverDocument(n)
 
-                out = Not AreOthersInRange(name)
-                If IsSolvable(name) Then
-                    If out Then
-                        out = False
-                    End If
 
                 End If
 
+            End If
+
+
+
+        Catch ex As Exception
+            s = False
+            kapput = GetParameter(n)
+            Debug.Print(ex.ToString())
+            Debug.Print("Fail adjusting " & n & " ...last value:" & kapput.Value.ToString)
+            Debug.Print(Sk3D.HealthStatus.ToString)
+
+            StartOver(kapput.Name)
+            Return s
+
+        End Try
+        Return s
+    End Function
+    Public Function RecoverSketch(name As String) As Boolean
+        Dim ok As Boolean = False
+        Try
+            While ((Not ok) And comando.IsUndoable())
+                comando.UndoCommand()
+                MakeallDriven()
+                Debug.Print("undoing Sketch")
+                ok = IsFoldable(name)
+
+
             End While
+
         Catch ex As Exception
             Debug.Print(ex.ToString())
+            MakeallDriven()
             StartOver(name)
         End Try
+        Return ok
 
+    End Function
+    Public Function RecoverDocument(name As String) As Boolean
+        Dim ok As Boolean = False
+        Try
+            While ((Not ok) And comando.IsUndoable())
+                comando.UndoCommand()
+                MakeallDriven()
+                Debug.Print("undoing Document")
+                ok = IsStatusDocOk(oDoc)
+                If ok Then
+                    Sk3D.Solve()
+                    'Sk3D.ExitEdit()
+                    ok = IsStatusDocOk(oDoc)
+                    If Not ok Then
+                        sick = True
+                    End If
+                End If
 
-    End Sub
+            End While
+
+        Catch ex As Exception
+            sick = True
+            Debug.Print(ex.ToString())
+            MakeallDriven()
+            StartOver(name)
+        End Try
+        Return ok
+
+    End Function
     Function AreAllInRange() As Boolean
         Dim b As Boolean = True
         For Each variable As DimDescriptor In optVariables
@@ -356,11 +503,10 @@ Public Class SketchOptimizer
 
     Function HealthSketch() As Boolean
         Dim b As Boolean
-        If Sk3D.HealthStatus = HealthStatusEnum.kOutOfDateHealth Then
-            b = True
-        ElseIf Sk3D.HealthStatus = HealthStatusEnum.kUpToDateHealth Then
+        If Sk3D.HealthStatus = HealthStatusEnum.kOutOfDateHealth Or
+         Sk3D.HealthStatus = HealthStatusEnum.kUpToDateHealth Then
 
-            b = True
+            b = monitor.AreDimensionsHealthy(Sk3D)
         ElseIf Sk3D.HealthStatus = HealthStatusEnum.kDriverLostHealth Then
             MakeallDriven()
             b = HealthSketch()
@@ -368,6 +514,27 @@ Public Class SketchOptimizer
         Else
             b = False
         End If
+        Return b
+    End Function
+    Function IsStatusDocOk(partDoc As PartDocument) As Boolean
+        Dim b As Boolean = True
+        Try
+            If monitor.PartHasProblems(partDoc) Then
+                b = medico.UndoFeature(monitor.sickFeature)
+                If b Then
+                    b = Not monitor.PartHasProblems(partDoc)
+                Else
+                    sick = True
+                End If
+
+            End If
+        Catch ex As Exception
+            Debug.Print(ex.ToString())
+            StartAgain(optimo.HighPriority())
+        End Try
+
+
+
         Return b
     End Function
     Public Sub MakeallDriven()
@@ -498,10 +665,15 @@ Public Class SketchOptimizer
     Function CalculateGain(name As String) As Double
         Dim p As Parameter = Nothing
         Dim g As Double
+        Dim v As DimDescriptor
         Try
             p = GetParameter(name)
             g = optimo.Ganancia(GetSetPoint(name), p._Value, GetIndexVariable(name))
+            v = optVariables(GetIndexVariable(name))
+            If (v.PO.Type = DimDescriptor.DimensionType.angulo) Then
+                g = Math.Sqrt(g)
 
+            End If
         Catch ex As Exception
             Debug.Print(ex.ToString())
             Debug.Print("Fail Calculating " & p.Name)

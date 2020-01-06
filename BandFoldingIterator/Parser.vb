@@ -33,6 +33,7 @@ Public Class Parser
 
         Return 0
     End Function
+
     Function GetVariableSketchName() As Integer
         Dim i As Integer = 0
         Dim pattern = String.Concat("\b", sketchName, "\w*")
@@ -54,6 +55,22 @@ Public Class Parser
 
         cantidad = dimensions.Length
         Return cantidad
+    End Function
+    Public Function IsVariableInSketch(variable As String) As Boolean
+
+
+        Try
+            For Each dimension As DimensionConstraint3D In oSk3D.DimensionConstraints3D
+                If Regex.IsMatch(dimension.Parameter.Name, variable) Then
+                    Return True
+                End If
+            Next
+        Catch ex As Exception
+            Debug.Print(ex.ToString())
+        End Try
+
+
+        Return False
     End Function
     Function ExtractValues() As Integer
         ReDim optVariables(cantidad - 1)

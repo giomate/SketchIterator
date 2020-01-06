@@ -5,6 +5,7 @@ Public Class InventorFile
     Dim documento As Inventor.Document
     Dim started As Boolean
     Dim manager As DesignProjectManager
+    Public medico As DesignDoctor
 
 
     Public Structure DesignParam

@@ -11,9 +11,9 @@ Public Class Optimizador
         variables = optVariables
         cantidad = variables.Length
         repetidos = 0
-        resolution = 1000
-        minRes = 100
-        maxRes = 100000
+        resolution = 64
+        minRes = 16
+        maxRes = 10000
         ReDim ErrorOptimizer(cantidad - 1)
         SortbyPriority()
         optVariables = sorted
@@ -185,7 +185,17 @@ Public Class Optimizador
 
         Return delta
     End Function
+    Public Function DownScale(s As Double) As Double
 
+        resolution = resolution / s
+        minRes = minRes / s
+        If minRes < 1 Then
+            minRes = 1
+
+        End If
+        maxRes = maxRes / s
+        Return resolution
+    End Function
 
 
 End Class

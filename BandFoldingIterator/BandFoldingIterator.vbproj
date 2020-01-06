@@ -81,6 +81,8 @@
     <Compile Include="BandRefolding.vb" />
     <Compile Include="Comandos.vb" />
     <Compile Include="Conversions.vb" />
+    <Compile Include="DesignDoctor.vb" />
+    <Compile Include="DesignMonitoring.vb" />
     <Compile Include="DimDescriptor.vb" />
     <Compile Include="InventorFile.vb" />
     <Compile Include="Nombres.vb" />

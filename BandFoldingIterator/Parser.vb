@@ -96,6 +96,8 @@ Public Class Parser
             tipo = DimDescriptor.DimensionType.dimension
         ElseIf Regex.IsMatch(p(1), "a") Then
             tipo = DimDescriptor.DimensionType.angulo
+        Else
+            tipo = DimDescriptor.DimensionType.dimension
 
         End If
         OptVariables(indexOpt).PO.Type = tipo

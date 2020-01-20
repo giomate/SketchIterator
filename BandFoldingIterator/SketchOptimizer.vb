@@ -40,6 +40,7 @@ Public Class SketchOptimizer
         Try
             If Not sick Then
                 If traductor.IsVariableInSketch(optimo.HighPriority()) Then
+                    MakeSketchesInvisible()
                     Sk3D.Visible = True
                     If adjustParameter(optimo.HighPriority()) Then
                         Debug.Print("!!! done !!!")
@@ -47,7 +48,7 @@ Public Class SketchOptimizer
                         If IsBuilt(optimo.HighPriority()) Then
                             If IsStatusDocOk(oDoc) Then
                                 done = True
-
+                                MakeallDriven()
                             Else
                                 StartOver(optimo.HighPriority())
                             End If
@@ -55,7 +56,7 @@ Public Class SketchOptimizer
                         End If
 
                     End If
-                    Sk3D.Visible = False
+                    MakeSketchesInvisible()
                 End If
 
 
@@ -71,17 +72,14 @@ Public Class SketchOptimizer
         End Try
         Return done
     End Function
-    Function IsSketchsVariable(variable) As Boolean
 
-        Return 0
-    End Function
 
     Function adjustParameter(name As String) As Boolean
         Dim p As Parameter = Nothing
 
         Try
 
-            MakeSketchesInvisible()
+
 
             'Sk3D.Edit()
             MakeallDriven()
@@ -105,7 +103,7 @@ Public Class SketchOptimizer
             Else
                 RecoverDocument(name)
             End If
-            MakeSketchesInvisible()
+
 
 
 
@@ -163,7 +161,7 @@ Public Class SketchOptimizer
             MakeallDrivenExc(name)
             If IsSolvable(name) Then
                 If GotTarget(name) Then
-                    done = True
+                    Return 1
                 Else
                     While ((Not GotTarget(name)) And (Not sick))
                         p = Iterate(name)
@@ -336,6 +334,7 @@ Public Class SketchOptimizer
                 GetDimension(n).Driven = False
             End If
 
+
             If HealthSketch() Then
                     h = True
                     Debug.Print("!!Sketch Healthy!!")
@@ -406,12 +405,13 @@ Public Class SketchOptimizer
                 GetDimension(n).Driven = False
             End If
             If IsSolvable(n) Then
-                oDoc.Update()
+                oDoc.Update2(True)
                 If IsStatusDocOk(oDoc) Then
                     s = True
-                    Debug.Print("!!Keep going!!")
+                    Debug.Print("!!Update passed!!")
                 Else
-                    Debug.Print(monitor.sickFeature.ToString)
+
+                    Debug.Print("###  Feature Sick   ###" & monitor.sickFeature.ToString)
                     RecoverDocument(n)
 
 
@@ -505,8 +505,17 @@ Public Class SketchOptimizer
         Dim b As Boolean
         If Sk3D.HealthStatus = HealthStatusEnum.kOutOfDateHealth Or
          Sk3D.HealthStatus = HealthStatusEnum.kUpToDateHealth Then
+            If monitor.AreDimensionsHealthy(Sk3D) Then
+                If monitor.AreConstrainsHealthy(Sk3D) Then
+                    b = True
+                Else
+                    Debug.Print("not deletable constrain")
+                    b = True
+                End If
+            Else
+                b = False
 
-            b = monitor.AreDimensionsHealthy(Sk3D)
+            End If
         ElseIf Sk3D.HealthStatus = HealthStatusEnum.kDriverLostHealth Then
             MakeallDriven()
             b = HealthSketch()

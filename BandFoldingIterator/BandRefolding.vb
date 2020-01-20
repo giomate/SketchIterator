@@ -1,10 +1,12 @@
 ﻿Imports Inventor
+Imports BandFoldingIterator.Iterator
 
 
 Public Class BandRefolding
     Dim Sk3D As Sketch3D
     Dim oDoc As PartDocument
-    Public alpha, beta, setPoint As Double
+    Dim alpha, beta, setPoint, ladoa, ladob, ladoc As Double
+
     Dim comando As Comandos
     Dim sketchos() As SketchOptimizer
     Dim label As New Nombres
@@ -13,7 +15,12 @@ Public Class BandRefolding
     Dim monitor As DesignMonitoring
     Dim optimoBanda As Optimizador
     Dim medicoBanda As DesignDoctor
-
+    Public Structure ParametersCollection
+        Public a As Parameter
+        Public b As Parameter
+        Public c As Parameter
+    End Structure
+    Public lados As ParametersCollection
 
 
     Public Sub New(docu As Inventor.Document)
@@ -24,8 +31,13 @@ Public Class BandRefolding
         optimoBanda = New Optimizador(FindMainSketcho().optVariables)
         healthy = True
         driftDone = False
-        optimoBanda.DownScale(5)
+        optimoBanda.DownScale(1)
         medicoBanda = New DesignDoctor(docu)
+
+    End Sub
+    Public Sub CloseDocument()
+        oDoc.Close()
+
     End Sub
     Function SetApha(a As Double) As Double
         alpha = a
@@ -84,12 +96,53 @@ Public Class BandRefolding
         running = False
         Return done
     End Function
+    Function StartFoldingAutomatic() As Boolean
+        running = True
+        done = False
+
+        Try
+            oDoc.Activate()
+
+            While (Not IsAcomplish(lados.a._Value) And healthy)
+                running = MakeSmallDriftByIndex(lados.a._Value, 0)
+                While (Not IsAcomplish(lados.b._Value) And healthy)
+                    running = MakeSmallDriftByIndex(lados.b._Value, 1)
+                    While (Not IsAcomplish(lados.c._Value) And healthy)
+                        running = MakeSmallDriftByIndex(lados.c._Value, 2)
+                    End While
+                End While
+            End While
+
+            ' beta = GetBeta()
+
+        Catch ex As Exception
+            healthy = False
+            Debug.Print(ex.ToString())
+            RecoverDoc(FindMainSketch.Name)
+
+        End Try
+
+        running = False
+        Return done
+    End Function
     Function MakeSmallDrift(a As Double) As Boolean
         Dim s As Double
 
         While (IsDocHealthy() And (Not IsDriftDone()))
             s = EstimateSetPoint(a)
-            If ChangeMainObjetive(s * 1000) = s * 1000 Then
+            If ChangeMainObjetiveByIndex(s * 10000, 0) = s * 10000 Then
+
+                StartSequence(FindMainSketch().Name)
+            End If
+        End While
+        Return IsDriftDone()
+    End Function
+    Function MakeSmallDriftByIndex(a As Double, i As Integer) As Boolean
+        Dim s As Double
+
+        While (IsDocHealthy() And (Not IsDriftDone()))
+            s = EstimateSetPoint(a)
+            If ChangeMainObjetiveByIndex(s * 10000, i) = s * 10000 Then
 
                 StartSequence(FindMainSketch().Name)
             End If
@@ -161,6 +214,15 @@ Public Class BandRefolding
         cantidadSketches = i
         Return i
     End Function
+    Function GetInitialParametersSketch() As Sketch3D
+        For Each sketch As Sketch3D In oDoc.ComponentDefinition.Sketches3D
+            If sketch.Name = "sdf" Then
+                Return sketch
+            End If
+        Next
+
+        Return Nothing
+    End Function
     Function IsOptSketch(n As String) As Boolean
         Dim b As Boolean
         If label.ContainSFirst(n) Then
@@ -177,13 +239,14 @@ Public Class BandRefolding
         d = FindMainSketcho().GetParameter(optimoBanda.HighPriority())._Value
         Return d
     End Function
-    Function ChangeMainObjetive(a As Double) As Double
+    Function ChangeMainObjetiveByIndex(a As Double, i As Integer) As Double
         Dim sketcho As SketchOptimizer = FindMainSketcho()
-        If Not sketcho.optVariables(0).PO.Setpoint = a Then
-            sketcho.optVariables(0).PO.Setpoint = a
+        If Not sketcho.optVariables(i).PO.Setpoint = a Then
+            sketcho.optVariables(i).PO.Setpoint = a
         End If
-        Return sketcho.optVariables(0).PO.Setpoint
+        Return sketcho.optVariables(i).PO.Setpoint
     End Function
+
     Function FindMainSketcho() As SketchOptimizer
         For Each sketcho As SketchOptimizer In sketchos
             If FindMainSketch().Equals(sketcho.Sk3D) Then
@@ -312,7 +375,7 @@ Public Class BandRefolding
     Public Function IsFeasible(s As String) As Boolean
         Dim b As Boolean = False
         Try
-            oDoc.Rebuild2(True)
+            oDoc.Update2(True)
             If IsDocHealthy() Then
                 b = True
                 Debug.Print("!!Doc Healthy!!")

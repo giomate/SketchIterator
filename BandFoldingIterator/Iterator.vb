@@ -10,10 +10,17 @@ Public Class Iterator
     Dim started, running, done As Boolean
     Dim oDesignProjectMgr As DesignProjectManager
     Dim Banda As InventorFile
-    Dim fileName, pattern As String
-    Dim folding As BandRefolding
+    Dim fullFileName, pattern, shortFileName As String
+    Dim folding, folded As BandRefolding
     Dim newName As Nombres
 
+
+    Public Structure ParametersCollection
+        Public a As Parameter
+        Public b As Parameter
+        Public c As Parameter
+    End Structure
+    Public lados As ParametersCollection
     Public Sub New()
 
         ' This call is required by the designer.
@@ -38,6 +45,7 @@ Public Class Iterator
                 'this Boolean to test whether or not the Inventor App  will
                 'need to be shut down.
                 started = True
+
 
             Catch ex2 As Exception
                 MsgBox(ex2.ToString())
@@ -69,7 +77,8 @@ Public Class Iterator
 
     Private Sub Iterator_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         Try
-            done = StartIterator()
+
+            done = StartIteratorMatched()
             If done Then
                 Me.Close()
             End If
@@ -85,10 +94,10 @@ Public Class Iterator
             If (started And (Not running)) Then
 
                 Banda = New InventorFile(oApp)
-                fileName = "BandFoldingIteration0.ipt"
+                fullFileName = "BandFoldingIteration9.ipt"
                 pattern = "Iteration"
                 newname = New Nombres
-                folding = New BandRefolding(Banda.CreateFileCopy(fileName, newName.IncrementLabelIpt(fileName, pattern)))
+                folding = New BandRefolding(Banda.CreateFileCopy(fullFileName, newName.IncrementLabelIpt(fullFileName, pattern)))
                 b = folding.StartFolding(0.77)
 
             End If
@@ -98,6 +107,58 @@ Public Class Iterator
             b = False
         End Try
         Return b
+    End Function
+    Public Function StartIteratorMatched() As Boolean
+        Dim b As Boolean
+
+        Try
+
+            If (started And (Not running)) Then
+
+                Banda = New InventorFile(oApp)
+                shortFileName = "BandFoldingIteration0.ipt"
+                fullFileName = Banda.CreateFullFileName(shortFileName)
+                Dim matchFileName As String
+                matchFileName = Banda.CreateFullFileName("Band9.ipt")
+
+                pattern = "Iteration"
+                newName = New Nombres
+
+                folding = New BandRefolding(Banda.CreateFileCopy(matchFileName, newName.IncrementLabelIpt(fullFileName, pattern)))
+                GetInitialParameters(fullFileName)
+                folding.lados.a = lados.a
+                folding.lados.b = lados.b
+                folding.lados.b = lados.c
+                'folded.CloseDocument()
+
+                b = folding.StartFoldingAutomatic()
+
+            End If
+
+        Catch ex As Exception
+            Debug.Print(ex.ToString())
+            b = False
+        End Try
+        Return b
+    End Function
+    Function GetInitialParameters(fullname As String) As Integer
+        folded = New BandRefolding(Banda.OpenFullNameFile(fullname))
+        Try
+            lados.a = folded.GetParameter("finala")
+            lados.b = folded.GetParameter("finalb")
+            lados.c = folded.GetParameter("finalc")
+
+            'folded.CloseDocument()
+            Return 0
+        Catch ex As Exception
+            lados.a = folded.GetParameter("finala")
+            lados.b = folded.GetParameter("finalb")
+            lados.c = folded.GetParameter("finalc")
+
+            'folded.CloseDocument()
+            Return 0
+        End Try
+
     End Function
 
 End Class

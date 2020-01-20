@@ -54,6 +54,16 @@ Public Class DesignMonitoring
         Next
         AreDimensionsHealthy = True
     End Function
+    Public Function AreConstrainsHealthy(sketch As Sketch3D) As Boolean
+        For Each constrain As GeometricConstraint3D In sketch.GeometricConstraints3D
+            If Not constrain.Deletable Then
+                AreConstrainsHealthy = False
+                Exit Function
+
+            End If
+        Next
+            AreConstrainsHealthy = True
+    End Function
     Public Function IsFeatureHealthy(feature As PartFeature) As Boolean
 
         If feature.HealthStatus <> HealthStatusEnum.kUpToDateHealth And

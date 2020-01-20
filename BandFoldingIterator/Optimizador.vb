@@ -6,17 +6,18 @@ Public Class Optimizador
     Dim priorities() As Double
     Public ErrorOptimizer() As Double
     Dim delta, gain, obj, maxRes, minRes, precision As Double
-    Public sp, resolution As Double
+    Public sp, resolution, multiplicator As Double
     Public Sub New(ByRef optVariables() As DimDescriptor)
         variables = optVariables
         cantidad = variables.Length
         repetidos = 0
-        resolution = 64
+        resolution = 128
         minRes = 16
-        maxRes = 10000
+        maxRes = 1024 * 1024
         ReDim ErrorOptimizer(cantidad - 1)
         SortbyPriority()
         optVariables = sorted
+        multiplicator = 10
     End Sub
     Function HighPriority() As String
         Dim prio(cantidad - 1), value As Double
@@ -116,7 +117,7 @@ Public Class Optimizador
     Function Ganancia(setValue As Double, current As Double) As Double
         Try
 
-            delta = (setValue - current) / (setValue * resolution)
+            delta = (setValue - current) * multiplicator * (setValue * resolution)
             gain = Math.Exp(delta)
 
 
@@ -146,6 +147,7 @@ Public Class Optimizador
         Dim i As Integer
         For Each variable As DimDescriptor In variables
             i = Array.IndexOf(variables, variable)
+            CalculateError(i)
             obj = obj + SingleError(i)
 
         Next
@@ -155,6 +157,7 @@ Public Class Optimizador
     End Function
     Function SingleError(i As Integer) As Double
         Dim obj As Double = 0
+        CalculateError(i)
         obj = Math.Pow(ErrorOptimizer(i), 2) * Math.Exp(-variables(i).PO.Prio)
         Return obj
     End Function
@@ -173,7 +176,6 @@ Public Class Optimizador
     Public Function IsPrecise(setpoint As Double, current As Double) As Boolean
         Dim b As Boolean
         precision = Math.Abs(GetDelta(setpoint, current) * resolution)
-
         b = precision > (setpoint / resolution)
         Return Not b
     End Function
